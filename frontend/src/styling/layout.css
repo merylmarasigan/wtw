@@ -1,0 +1,29 @@
+.centered{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+}
+
+button{
+    color: white;
+    background-color: black;
+    padding: 10px; 
+    margin: 15px;
+    border-radius: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.footer{
+    border: black solid 1px;
+    background-color: black;
+    padding: 30px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    color: white;
+    
+}

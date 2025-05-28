@@ -1,0 +1,22 @@
+.header{
+    border: black solid 1px;
+    background-color: black;
+    padding: 30px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.header a {
+    text-decoration: none;  /* Removes the underline */
+    color: white;        
+    outline: none;          
+    font-size: 35px;
+  }
+
+.links a{
+    font-size: 15px;
+    margin-left: 10px
+    
+}
