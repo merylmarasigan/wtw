@@ -1,8 +1,25 @@
 input{
     padding: 15px; 
     margin: 15px;
-    width: 70%
+    width: 70%;
+    /* width: 100% */
+    /* width: 100% */
 }
 form{
-    width: 50%;
+    width: 70%;
+}
+
+.no-results{
+    /* border: green solid 1px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+}
+
+.with-results{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
