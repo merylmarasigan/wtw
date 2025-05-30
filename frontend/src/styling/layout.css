@@ -1,10 +1,9 @@
 .App {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Full viewport height */
+    min-height: 100vh; 
 }
 
-/* Wrap your main content area */
 .main-content {
     flex: 1; /* This takes up all available space, pushing footer down */
 }
@@ -14,7 +13,7 @@
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    min-height: 60vh;
+    min-height: 70vh;
 }
 
 button{
@@ -50,3 +49,37 @@ button{
 }
 
 
+.spinner {
+    width: 75px;
+    height: 75px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid black;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+.not-found{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 76vh;
+}
+.icon{
+    height: 70px;
+}
+.search-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.search-icon{
+    filter:invert(1);
+    height: 15px;
+    width: auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

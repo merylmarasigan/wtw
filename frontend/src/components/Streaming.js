@@ -7,20 +7,23 @@ import StreamingCard from "./StreamingCard";
 const Streaming = () => {
     const loc = useLocation();
     const {title, id} = loc.state || {};
-
+    const [isLoading, setLoading] = useState(false)
     const [sites, setSites] = useState([]);
 
     useEffect(() => {
         // Create an async function inside useEffect
+        setLoading(true);
         const fetchStreamingData = async () => {
             try{
                 const response = await axios.post(`http://localhost:5000/where-to-stream`, {
                     id: id, 
                     type:'movie'
                 });
-                setSites(response.data); // Don't forget to update your state!
+                setSites(response.data); 
             }catch(error){
                 console.log(error.message);
+            }finally{
+                setLoading(false)
             }
         };
 
@@ -29,17 +32,29 @@ const Streaming = () => {
             fetchStreamingData();
         }
 
-    }, [id]); // This is correct
+    }, [id]); 
 
+    if(isLoading){
+        return(
+        <div className='centered'>
+            <div className='spinner'></div>
+        </div>)
+    }
     return(
-        <div class='horizontal-center'>
+        <div className='horizontal-center'>
          
          <h1>Where to Stream '{title}' </h1>
-         <div class='sc'>
+         {Object.keys(sites).length > 0 && <div class='sc'>
               {Object.keys(sites).map(s => {
              return <StreamingCard country={s} sites={sites[s]}/>
          })}
+         </div>}
+
+         {Object.keys(sites).length ===  0 && 
+         <div className='no-streaming-info-found'>
+            <p>No streaming information found</p>
          </div>
+         }
        
         </div>
     )

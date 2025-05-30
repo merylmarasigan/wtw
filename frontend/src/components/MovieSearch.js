@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../styling/layout.css'
 import '../styling/Search.css'
 import axios from 'axios';  
@@ -8,12 +8,14 @@ const MovieSearch = () => {
     const [title, setTitle] = useState('');
     const [movieData, setMovieData] = useState(null);
     const [finalTitle, setFinalTitle] = useState('');
+    const [isLoading, setLoading] = useState(false);
 
     
 
     const handleSubmit = async(e) => {
         e.preventDefault();
         setFinalTitle(title);
+        setLoading(true);
         try {
             const response = await axios.post('http://localhost:5000/find-movie', {
                 title: title
@@ -23,25 +25,44 @@ const MovieSearch = () => {
             
         } catch(error) {
             console.log('ERROR:', error.message);
+        }finally{
+            setLoading(false);
         }
     }
 
+    if(isLoading){
+        return(
+        <div className='centered'>
+            <div className='spinner'></div>
+        </div>)
+    }
 
-    if(movieData === null){
+
+    if (!isLoading && movieData === null){
         return(
         <div className='centered'>
             <div className='no-results'>
-                <h1>Search for a Movie!</h1>
+                <div className='search-title'>
+                    <img src='/movieicon.png' class='icon'></img>
+                    <h1>Search for a Movie!</h1>
+                </div>
                 <form onSubmit={handleSubmit}>
                     <input type='text' placeholder='Title' value={title} required onChange={(e)=>{setTitle(e.target.value)}}></input>
-                    <button>Search</button>
+                    <button><img src='/searchicon.png' class='search-icon'/></button>
                 </form>
             </div>
         </div>
         
         )
 
-    }else{
+    }else if( !isLoading && movieData.length === 0){
+        return (
+        <div>
+            <h1>No Results found for '{finalTitle}'</h1>
+        </div>
+    )
+    }
+    if(!isLoading && movieData.length > 0){
         return(
            <div className='with-results'>
                 <h1>Results for '{finalTitle}'</h1>

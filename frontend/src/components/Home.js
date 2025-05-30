@@ -20,6 +20,12 @@ const Home = () => {
             <div>
                 <h1>Find where your favorite movies and shows are streaming!</h1>
                 <div>
+                    {/* <button onClick={handleMovieClick}>
+                        <div className='inner-button'>
+                            Movie
+                            <img src='/brokenReel.png' class='white-icon'/>
+                        </div>
+                    </button> */}
                     <button onClick={handleMovieClick}>Movie</button>
                     <button onClick={handleSeriesClick}>Series</button>
                 </div>

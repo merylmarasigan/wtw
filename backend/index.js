@@ -17,16 +17,12 @@ app.use(cors({
     origin: 'http://localhost:3000' // React dev server URL
   }));
 
-// app.post('/api/button-click', (req, res) => {
-// console.log('Button was clicked!');
-// console.log('Data received:', req.body);
-// })
+
 
 app.post('/find-movie', async (req,res) => {
     const title = req.body['title'];
     console.log(`finding movies with titles similar to: ${req.body['title']}`)
 
-    //res.send('hello, world!')
 
     try{
         const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
@@ -41,22 +37,19 @@ app.post('/find-movie', async (req,res) => {
                 Authorization: token
             }
         });
-        // const matches = response.data.results.map((m) => {
-        //     return [m]
-        // })
+
 
         const matches = []
 
         response.data.results.forEach((m) => {
-            if(m['overview'] !== ''){
-                matches.push({'title': m['original_title'], 'id':m['id'], 'overview':m['overview'], 'release_date': m['release_date']})
+            if(m['overview'] !== '' && m['video'] === false){
+                matches.push({'title': m['original_title'], 'not a movie?': m['video'], 'id':m['id'], 'overview':m['overview'], 'release_date': m['release_date']})
             }
         })
 
         console.log(matches);
         res.send(matches)
-        //console.log(response.data.results);
-        //res.render('results.ejs', {title:query, titleMatches: response.data.results, type:'movie'})
+       
     }catch(error){
         res.send(error.message);
     }
@@ -73,14 +66,12 @@ app.post('/where-to-stream', async (req,res) => {
         const response = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/watch/providers`, 
         {headers:{accept: 'application/json', Authorization: token}});
 
-        //console.log(response.data.results)
 
         const apiRes = response.data.results;
         const streaming = {};
 
         Object.keys(apiRes).forEach(country => {
             //for each country compile a list of all streaming sites
-
             const streamingSites = [];
 
             if('buy' in apiRes[country]){
@@ -96,7 +87,7 @@ app.post('/where-to-stream', async (req,res) => {
             }
 
             if('rent' in apiRes[country]){
-                //go through all the sites where you can buy
+                //go through all the sites where you can rent
                 const buy = apiRes[country]['rent'];
 
                 buy.forEach(site => {
@@ -108,7 +99,7 @@ app.post('/where-to-stream', async (req,res) => {
             }
 
             if('flatrate' in apiRes[country]){
-                //go through all the sites where you can buy
+                //go through all the sites where you can watch with flatrate subscription
                 const buy = apiRes[country]['flatrate'];
 
                 buy.forEach(site => {
@@ -127,6 +118,7 @@ app.post('/where-to-stream', async (req,res) => {
         })
 
         res.send(streaming);
+        console.log(`STREAMING IN ${Object.keys(streaming).length} countries`)
     }catch(error){
         console.log(error.message)
     }

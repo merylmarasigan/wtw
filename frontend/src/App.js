@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -7,6 +6,7 @@ import SeriesSearch from './components/SeriesSearch';
 import Footer from './components/Footer';
 import TitleMatches from './components/TitleMatches';
 import Streaming from './components/Streaming';
+import NotFound from './components/NotFound';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 
@@ -29,7 +29,7 @@ function App() {
 
       <Route path='/streaming' element={<Streaming/>}></Route>
 
-      <Route path='*' element={<p>Page Not Found</p>}></Route>
+      <Route path='*' element={<NotFound/>}></Route>
      </Routes>
 
      </div>

@@ -9,7 +9,7 @@ const SeriesSearch = () => {
         <h1> Search for a Series!</h1>
         <form>
             <input type='text' required placeholder='Title'></input>
-            <button>Search</button>
+            <button><img src='/searchicon.png' class='search-icon'/></button>
         </form>
 
     </div>);
