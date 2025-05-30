@@ -7,10 +7,13 @@ import SeriesSearch from './components/SeriesSearch';
 import Footer from './components/Footer';
 import TitleMatches from './components/TitleMatches';
 import Streaming from './components/Streaming';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 
 function App() {
+  const location = useLocation();
+
+
   return (
     <div className="App">
      <Header/>
@@ -18,7 +21,7 @@ function App() {
      <Routes>
       <Route exact path='/' element={<Home/>}></Route>
 
-      <Route exact path='/movie-search' element={<MovieSearch/>}></Route>
+      <Route exact path='/movie-search' element={<MovieSearch key={location.key}/>}></Route>
 
       <Route exact path='/series-search' element={<SeriesSearch/>}></Route>
 
