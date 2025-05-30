@@ -13,9 +13,10 @@ const Card = (props) => {
             >
                 {props.title}
             </Link>
-            </h3>
+        </h3>
+        <p className='year'>{props.year}</p>
         <hr/>
-        <p>{props.overview}</p>
+        <p className='overview'>{props.overview}</p>
 
     </div>);
 };

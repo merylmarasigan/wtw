@@ -49,7 +49,7 @@ app.post('/find-movie', async (req,res) => {
 
         response.data.results.forEach((m) => {
             if(m['overview'] !== ''){
-                matches.push({'title': m['original_title'], 'id':m['id'], 'overview':m['overview']})
+                matches.push({'title': m['original_title'], 'id':m['id'], 'overview':m['overview'], 'release_date': m['release_date']})
             }
         })
 

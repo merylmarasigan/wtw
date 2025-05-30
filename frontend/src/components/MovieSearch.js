@@ -101,7 +101,7 @@ const MovieSearch = () => {
            <div className='with-results'>
                 <h1>Results for '{finalTitle}'</h1>
                 {movieData.map((movie) => {
-                     return <Card key={movie['id']} title={movie['title']} id={movie['id']} overview={movie['overview']}/>;
+                     return <Card key={movie['id']} title={movie['title']} id={movie['id']} overview={movie['overview']} year={movie['release_date'].substring(0,4)}/>;
                 })}
            </div>
         );

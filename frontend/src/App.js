@@ -14,6 +14,7 @@ function App() {
   return (
     <div className="App">
      <Header/>
+     <div className='main-content'>
      <Routes>
       <Route exact path='/' element={<Home/>}></Route>
 
@@ -27,6 +28,9 @@ function App() {
 
       <Route path='*' element={<p>Page Not Found</p>}></Route>
      </Routes>
+
+     </div>
+     
      <Footer/>
     </div>
   );
