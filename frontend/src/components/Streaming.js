@@ -6,7 +6,7 @@ import StreamingCard from "./StreamingCard";
 
 const Streaming = () => {
     const loc = useLocation();
-    const {title, id} = loc.state || {};
+    const {title, id, type} = loc.state || {};
     const [isLoading, setLoading] = useState(false)
     const [sites, setSites] = useState([]);
 
@@ -17,7 +17,7 @@ const Streaming = () => {
             try{
                 const response = await axios.post(`http://localhost:5000/where-to-stream`, {
                     id: id, 
-                    type:'movie'
+                    type:type
                 });
                 setSites(response.data); 
             }catch(error){

@@ -23,7 +23,7 @@ function App() {
 
       <Route exact path='/movie-search' element={<MovieSearch key={location.key}/>}></Route>
 
-      <Route exact path='/series-search' element={<SeriesSearch/>}></Route>
+      <Route exact path='/series-search' element={<SeriesSearch key={location.key}/>}></Route>
 
       <Route path='/title-matches' element={<TitleMatches/>}></Route>
 

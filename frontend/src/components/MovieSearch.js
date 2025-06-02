@@ -9,6 +9,7 @@ const MovieSearch = () => {
     const [movieData, setMovieData] = useState(null);
     const [finalTitle, setFinalTitle] = useState('');
     const [isLoading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     
 
@@ -16,15 +17,35 @@ const MovieSearch = () => {
         e.preventDefault();
         setFinalTitle(title);
         setLoading(true);
+        setError(null);
         try {
             const response = await axios.post('http://localhost:5000/find-movie', {
                 title: title
             });
+            console.log('MOVIE DATA:', response.data.length)
             setMovieData(response.data);
             
             
         } catch(error) {
-            console.log('ERROR:', error.message);
+            if (error.response && (error.response.status === 500 || error.response.status ===  404)) {
+                // Custom error message from backend
+                const backendErrorMessage = error.response.data?.error;
+                if (backendErrorMessage) {
+                    setError(backendErrorMessage); // "Failed to search movies"
+                } else {
+                    setError('Server error occurred');
+                }
+            }
+
+            // if (error.response && error.response.status === 500) {
+            //     // Custom error message from backend
+            //     const backendErrorMessage = error.response.data?.error;
+            //     if (backendErrorMessage) {
+            //         setError(backendErrorMessage); // "Failed to search movies"
+            //     } else {
+            //         setError('Server error occurred');
+            //     }
+            // }
         }finally{
             setLoading(false);
         }
@@ -35,6 +56,15 @@ const MovieSearch = () => {
         <div className='centered'>
             <div className='spinner'></div>
         </div>)
+    }
+
+    if(error){
+        return(
+            <div className='centered'>
+                <p>{error}</p>
+            </div>
+        )
+
     }
 
 
@@ -55,10 +85,11 @@ const MovieSearch = () => {
         
         )
 
-    }else if( !isLoading && movieData.length === 0){
+    }
+    if( !isLoading && movieData.length === 0){
         return (
-        <div>
-            <h1>No Results found for '{finalTitle}'</h1>
+        <div className='centered'>
+            <h1>No results found for '{finalTitle}'</h1>
         </div>
     )
     }
@@ -67,7 +98,7 @@ const MovieSearch = () => {
            <div className='with-results'>
                 <h1>Results for '{finalTitle}'</h1>
                 {movieData.map((movie) => {
-                     return <Card key={movie['id']} title={movie['title']} id={movie['id']} overview={movie['overview']} year={movie['release_date'].substring(0,4)}/>;
+                     return <Card key={movie['id']} title={movie['title']} id={movie['id']} overview={movie['overview']} year={movie['release_date'].substring(0,4)} type='movie'/>;
                 })}
            </div>
         );

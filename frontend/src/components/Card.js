@@ -8,7 +8,7 @@ const Card = (props) => {
         <h3>
             <Link 
             to='/streaming'
-            state={{title: props.title, id: props.id }}
+            state={{title: props.title, id: props.id, type:props.type}}
             className='h'
             >
                 {props.title}
