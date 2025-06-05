@@ -21,7 +21,7 @@ const SeriesSearch = () => {
 
         //call to our express server
         try{
-            const response = await axios.post('http://localhost:5000/find-series', {title: title});
+            const response = await axios.post('https://wtw-production.up.railway.app/find-series', {title: title});
 
             setSeriesData(response.data);
 

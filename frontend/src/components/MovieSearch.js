@@ -19,7 +19,7 @@ const MovieSearch = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.post('http://localhost:5000/find-movie', {
+            const response = await axios.post('https://wtw-production.up.railway.app/find-movie', {
                 title: title
             });
             console.log('MOVIE DATA:', response.data.length)

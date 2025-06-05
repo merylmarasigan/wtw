@@ -15,7 +15,7 @@ const Streaming = () => {
         setLoading(true);
         const fetchStreamingData = async () => {
             try{
-                const response = await axios.post(`http://localhost:5000/where-to-stream`, {
+                const response = await axios.post(`https://wtw-production.up.railway.app/where-to-stream`, {
                     id: id, 
                     type:type
                 });
