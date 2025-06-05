@@ -16,7 +16,7 @@ const token = process.env.API_TOKEN;
 // Enable CORS for your React app
 app.use(cors({
     origin: ['http://localhost:3000' ,// React dev server URL
-        'https://your-frontend-domain.vercel.app'] // add when you get it
+        'https://where-to-watch-sooty.vercel.app/'] // add when you get it
   }));
 
 
