@@ -50,7 +50,7 @@ const SeriesSearch = () => {
                         <h1>Search for a Series!</h1>
                     </div>
                     <form onSubmit={handleSubmit}>
-                        <input type='text' placeholder='Title' value={title} required onChange={(e)=>{setTitle(e.target.value)}}></input>
+                        <input type='search' placeholder='Title' value={title} required onChange={(e)=>{setTitle(e.target.value)}}></input>
                         <button><img src='/searchicon.png' class='search-icon'/></button>
                     </form>
                 </div>
