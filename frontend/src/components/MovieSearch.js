@@ -73,7 +73,7 @@ const MovieSearch = () => {
         <div className='centered'>
             <div className='no-results'>
                 <div className='search-title'>
-                    <img src='/movieicon.png' class='icon'></img>
+                    <img src='/camera-reels-fill.svg' class='icon'></img>
                     <h1>Search for a Movie!</h1>
                 </div>
                 <form onSubmit={handleSubmit}>

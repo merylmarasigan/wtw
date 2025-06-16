@@ -46,7 +46,7 @@ const SeriesSearch = () => {
             <div className='centered'>
                 <div className='no-results'>
                     <div className='search-title'>
-                        <img src='/tvicon.png' class='icon'></img>
+                        <img src='/tv-fill.svg' class='icon'></img>
                         <h1>Search for a Series!</h1>
                     </div>
                     <form onSubmit={handleSubmit}>

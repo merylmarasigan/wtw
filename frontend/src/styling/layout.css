@@ -66,8 +66,7 @@ button{
     height: 76vh;
 }
 .icon{
-    height: 70px;
-    filter: brightness(0);
+    height: 50px;
 }
 .search-title{
     display: flex;
